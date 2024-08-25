@@ -1,0 +1,28 @@
+https://school.programmers.co.kr/learn/courses/30/lessons/42576
+
+import java.util.*;
+
+class Solution {
+    public String solution(String[] participant, String[] completion) {
+        String answer = "";
+        HashMap<String,Integer> map = new HashMap<String,Integer>();
+        for(String player : participant){ //participant라는 입출력 내용을 player에 넣어준다.
+            if(map.containsKey(player)){ //containsKey메서드는 해당 키가 해시맵에 있으면 true를 반환하고, 없으면 false를 반환 
+                                         //맨처음에는 map이 빈값이기 때문에 false라서 else로 이동한다.
+                map.put(player,map.get(player)+1);//map.put(key값,value값)
+            }else{
+                map.put(player,1);
+            }
+        }
+        for(String player : completion){
+            map.put(player,map.get(player)-1);
+        }
+        
+        for(String key : map.keySet()){
+            if(map.get(key) !=0){
+                return key;
+            }
+        }
+        return answer;
+    }
+}
